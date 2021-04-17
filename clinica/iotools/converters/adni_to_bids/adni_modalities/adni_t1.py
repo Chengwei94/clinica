@@ -269,13 +269,13 @@ def adni1go2_image(
         if not check_qc(scan, subject_id, visit_str, mri_quality_subj):
             return None
 
-    if scan.Sequence.str.endswith("N3") or scan.Sequene.str.endswith("N3m"):
+    if scan.Sequence.endswith("N3") or scan.Sequence.endswith("N3m"):
         n3 = scan.Sequence.find("N3")
     # Sequence ends in 'N3' or in 'N3m'
         sequence = scan.Sequence[: n3 + 2 + int(scan.Sequence[n3 + 2] == "m")]
         sequence = replace_sequence_chars(sequence)
 
-    if scan.Sequence.str.endswith("Scaled"):
+    if scan.Sequence.endswith("Scaled"):
         n3 = scan.Sequence.find("Scaled")
     # Sequence ends in 'N3' or in 'N3m'
         sequence = scan.Sequence[: n3 + 6]
